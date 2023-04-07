@@ -16,7 +16,7 @@ jobs:
 
       - name: Buildah Action
         id: build-image
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v2.12
         with:
           image: ${{ env.IMAGE_NAME }}
           tags: latest ${{ github.sha }}
@@ -24,7 +24,7 @@ jobs:
             ./Containerfile
 
       - name: Log in to the GitHub Container registry
-        uses: redhat-actions/podman-login@v1
+        uses: redhat-actions/podman-login@v1.6
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -32,7 +32,7 @@ jobs:
 
       - name: Push to GitHub Container Repository
         id: push-to-ghcr
-        uses: redhat-actions/push-to-registry@v2
+        uses: redhat-actions/push-to-registry@v2.7
         with:
           image: ${{ steps.build-image.outputs.image }}
           tags: ${{ steps.build-image.outputs.tags }}
