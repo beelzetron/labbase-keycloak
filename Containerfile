@@ -15,6 +15,5 @@ COPY --from=builder /opt/keycloak/ /opt/keycloak/
 
 # change these values to point to a running postgres instance
 ENV KC_DB=postgres
-ENV KC_DB_URL=postgresql
 ENV KC_HOSTNAME=sso.labbase.it
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
